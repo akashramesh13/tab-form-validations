@@ -2,6 +2,7 @@ import React from "react";
 
 const Profile = ({ data, setData }) => {
   const handleOnValueChange = (e) => {
+    if (e.target.name == "age" && !!isNaN(Number(e.target.value))) return;
     setData((prev) => ({
       ...prev,
       profile: {
@@ -22,7 +23,7 @@ const Profile = ({ data, setData }) => {
       />
       <label htmlFor="age">Age</label>
       <input
-        type="number"
+        type="text"
         name="age"
         id="age"
         value={data.profile.age}
