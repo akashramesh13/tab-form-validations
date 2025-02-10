@@ -1,0 +1,32 @@
+.heading-container {
+  display: flex;
+}
+
+.heading {
+  padding: 5px;
+  margin-right: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.heading:hover {
+  background-color: beige;
+}
+
+.heading:active {
+  background-color: skyblue;
+}
+
+.tab-body {
+  border: 1px solid black;
+  height: 300px;
+}
+
+input {
+  display: flex;
+  flex-direction: row;
+  max-width: 300px;
+}
+
+input[type="radio"] {
+  display: inline;
+}
