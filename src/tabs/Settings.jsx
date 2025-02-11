@@ -1,15 +1,13 @@
 import React from "react";
 
 const Settings = ({ data, setData }) => {
-  const handleRadioButtonOnChange = (e, setting) => {
-    const updatedSettings = data.settings.map((item) => {
-      if (setting.id == item.id) {
-        item.isChecked = true;
-      } else {
-        item.isChecked = false;
-      }
-      return item;
-    });
+  const handleRadioButtonOnChange = (e, { id }) => {
+    const updatedSettings = data.settings.map((item) =>
+      item.id === id
+        ? { ...item, isChecked: true }
+        : { ...item, isChecked: false }
+    );
+
     setData((prev) => ({
       ...prev,
       settings: updatedSettings,
@@ -17,16 +15,16 @@ const Settings = ({ data, setData }) => {
   };
   return (
     <>
-      {data.settings.map((setting) => {
+      {data.settings.map(({ name, id, isChecked }) => {
         return (
           <>
-            <label htmlFor={setting.name}>{setting.name}</label>
+            <label htmlFor={name}>{name}</label>
             <input
-              key={setting.key}
+              key={id}
               type="radio"
-              name={setting.name}
-              checked={setting.isChecked}
-              onChange={(e) => handleRadioButtonOnChange(e, setting)}
+              name={name}
+              checked={isChecked}
+              onChange={(e) => handleRadioButtonOnChange(e, { id })}
             ></input>
           </>
         );

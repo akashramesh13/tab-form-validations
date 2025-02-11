@@ -1,16 +1,17 @@
 import React from "react";
 
 const Profile = ({ data, setData }) => {
-  const handleOnValueChange = (e) => {
-    if (e.target.name == "age" && !!isNaN(Number(e.target.value))) return;
+  const handleOnValueChange = ({ target: { name, value } }) => {
+    if (name == "age" && !!isNaN(Number(value))) return;
     setData((prev) => ({
       ...prev,
       profile: {
         ...prev.profile,
-        [e.target.name]: e.target.value,
+        [name]: value,
       },
     }));
   };
+  const {name, age, email} = data.profile;
   return (
     <form className="profile-container">
       <label htmlFor="name">Name</label>
@@ -18,7 +19,7 @@ const Profile = ({ data, setData }) => {
         type="text"
         name="name"
         id="name"
-        value={data.profile.name}
+        value={name}
         onChange={handleOnValueChange}
       />
       <label htmlFor="age">Age</label>
@@ -26,7 +27,7 @@ const Profile = ({ data, setData }) => {
         type="text"
         name="age"
         id="age"
-        value={data.profile.age}
+        value={age}
         onChange={handleOnValueChange}
       />
       <label htmlFor="email">Email</label>
@@ -34,7 +35,7 @@ const Profile = ({ data, setData }) => {
         type="email"
         name="email"
         id="email"
-        value={data.profile.email}
+        value={email}
         onChange={handleOnValueChange}
       />
     </form>
